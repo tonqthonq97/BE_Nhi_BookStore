@@ -38,17 +38,7 @@ jacocoTestReport {
 	}
 }
 
-task stage(type: Copy, dependsOn: [clean, build]) {
-    from jar.archivePath
-    into project.rootDir
-    rename {
-        'app.jar'
-    }
+jar {
+    baseName = 'app'
+    version = '0.0.1'
 }
-stage.mustRunAfter(clean)
-
-clean << {
-    project.file('app.jar').delete()
-}
-
-check.dependsOn jacocoTestReport
